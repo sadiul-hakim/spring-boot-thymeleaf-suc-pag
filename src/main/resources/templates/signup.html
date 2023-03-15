@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="Base::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <title>SignUp Page</title>
+</head>
+<body>
+    <section>
+        <div class="container mt-3">
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    <div class="p-3 card">
+                        <img th:src="@{/image/profile.png}" width="90" height="90" class="mx-auto my-2" />
+                        <h3 class="text-center text-primary">SignUp Here</h3>
+
+                        <div th:if="${session.message}" class="alert my-2" th:classappend="${session.message.getType()}">
+                            <p th:text="${session.message.getContent()}"></p>
+
+                            <th:block th:text="${#session.removeAttribute('message')}"></th:block>
+                        </div>
+
+                        <form th:action="@{/register_user}" method="post" th:object="${user}">
+                            <div>
+                                <label for="name">Name : </label><br/>
+                                <input
+                                        type="text"
+                                        name="name"
+                                        class="form-control"
+                                        id="name"
+                                        required
+                                        th:value="${user.name}"
+                                />
+                                <p class="text-danger" th:each="e:${#fields.errors('name')}" th:text="${e}"></p>
+                            </div><br/>
+                            <div>
+                                <label for="email">Email : </label><br/>
+                                <input
+                                        type="email"
+                                        name="email"
+                                        class="form-control"
+                                        id="email"
+                                        required
+                                        th:value="${user.email}"
+                                />
+                                <p class="text-danger" th:each="e:${#fields.errors('email')}" th:text="${e}"></p>
+                            </div><br/>
+                            <div>
+                                <label for="password">Password : </label><br/>
+                                <input
+                                        type="password"
+                                        name="password"
+                                        class="form-control"
+                                        id="password"
+                                        required
+                                />
+                                <p class="text-danger" th:each="e:${#fields.errors('password')}" th:text="${e}"></p>
+                            </div><br/>
+                            <div>
+                                <label for="about">About : </label><br/>
+                                <textarea
+                                        name="about"
+                                        id="about"
+                                        class="form-control"
+                                        th:value="${user.about}"
+                                ></textarea>
+                                <p class="text-danger" th:each="e:${#fields.errors('about')}" th:text="${e}"></p>
+                            </div><br/>
+                            <div>
+                                <input
+                                        type="checkbox"
+                                        id="agreement"
+                                        name="agreement"
+
+                                />
+                                <label for="agreement">Agree with terms and conditions</label>
+                            </div><br/>
+                            <div>
+                                <input type="submit" value="Register" class="btn btn-primary mr-2"/>
+                                <input type="reset" value="Reset" class="btn btn-danger"/>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
