@@ -1,6 +1,7 @@
 package com.smartcontact.smartcontactmanager.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Contact {
@@ -13,7 +14,7 @@ public class Contact {
     private String email;
     private String phone;
     private String image;
-    @Column(length = 500)
+    @Size(max = 400)
     private String description;
 
     @ManyToOne

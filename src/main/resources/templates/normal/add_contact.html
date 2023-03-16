@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="normal/user_base::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Contact</title>
+</head>
+<body>
+<section>
+
+    <div class="row">
+        <div class="card p-3 my-3 col-md-7 mx-auto">
+            <h3 class="text-primary text-center my-2">Add Contact</h3>
+            <form method="post" th:object="${contact}" th:action="@{/add_contact}">
+                <div>
+                    <label for="name">Name : </label><br/>
+                    <input type="text" name="name" id="name" class="form-control" th:value="${contact.name}"/>
+                </div><br/>
+                <div>
+                    <label for="nickname">Nick Name : </label><br/>
+                    <input type="text" name="nickname" id="nickname" class="form-control" th:value="${contact.nickname}"/>
+                </div><br/>
+                <div>
+                    <label for="work">Work : </label><br/>
+                    <input type="text" name="work" id="work" class="form-control" th:value="${contact.work}"/>
+                </div><br/>
+                <div>
+                    <label for="email">Email : </label><br/>
+                    <input type="email" name="email" id="email" class="form-control" th:value="${contact.email}"/>
+                </div><br/>
+                <div>
+                    <label for="phone">Phone : </label><br/>
+                    <input type="text" name="phone" id="phone" class="form-control" th:value="${contact.phone}"/>
+                </div><br/>
+                <div>
+                    <label for="description">Description : </label><br/>
+                    <textarea name="description" id="description" class="form-control"></textarea>
+                </div><br/>
+                <div>
+                    <label for="file">Image File : </label><br/>
+                    <input name="file" id="file" class="form-control" type="file"/>
+                </div><br/>
+                <div>
+                    <button type="submit" class="btn btn-primary">Add</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</section>
+</body>
+</html>
